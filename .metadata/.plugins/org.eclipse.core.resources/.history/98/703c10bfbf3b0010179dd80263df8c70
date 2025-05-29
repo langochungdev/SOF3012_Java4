@@ -1,0 +1,13 @@
+package Entity;
+
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+
+public class Favorite {
+@ManyToOne
+@JoinColumn(name = "VideoId")
+private Video video;
+@ManyToOne
+@JoinColumn(name = "UserId")
+private User user;
+}

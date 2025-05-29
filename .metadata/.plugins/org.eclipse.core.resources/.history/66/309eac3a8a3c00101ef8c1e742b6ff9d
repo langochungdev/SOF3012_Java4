@@ -1,0 +1,66 @@
+package Controller;
+
+import java.io.IOException;
+import java.io.PrintStream;
+import java.io.PrintWriter;
+import java.util.List;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import DAO.UserDAOImpl;
+import DAO.VideoDAOImpl;
+import Entity.User;
+import Entity.Video;
+
+@WebServlet("/video")
+public class b1 extends HttpServlet {
+    private UserDAOImpl userDAO = new UserDAOImpl();
+    private VideoDAOImpl videoDAO = new VideoDAOImpl();
+
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setContentType("text/html;charset=UTF-8");
+        PrintStream out = System.out;
+        
+        
+        String idOrEmail = "";
+            User user = userDAO.findByIdOrEmail(idOrEmail);
+            out.println("User: " + user.getFullname());
+
+        // 2. Tìm video theo từ khóa
+        String keyword = "";
+            List<Video> videos = videoDAO.findByKeyword(keyword);
+            for (Video v : videos) {
+                out.println("" + v.getTitle());
+            }
+
+        // 3. Top 10 video được yêu thích nhất
+        List<Video> topVideos = videoDAO.findTop10MostFavorited();
+        for (Video v : topVideos) {
+            out.println("video được yêu thích nhất: " + v.getTitle());
+        }
+
+        // 4. Video không được ai thích
+        List<Video> notFavorited = videoDAO.findNotFavorited();
+        for (Video v : notFavorited) {
+            out.println("video ko ai thích: " + v.getTitle());
+        }
+
+        // 5. Video được chia sẻ trong năm 2024
+        out.println("<h2>Video chia sẻ năm 2024</h2>");
+        List<Video> shared2024 = videoDAO.findSharedIn2024();
+        for (Video v : shared2024) {
+            out.println("<p>" + v.getTitle() + "</p>");
+        }
+
+        // 6. Thông tin chia sẻ tổng hợp
+        out.println("<h2>Thông tin chia sẻ video</h2>");
+        out.println("<table border='1'><tr><th>Tiêu đề</th><th>Lượt chia sẻ</th><th>Ngày đầu</th><th>Ngày cuối</th></tr>");
+        List<Object[]> summary = videoDAO.getVideoShareSummary();
+        for (Object[] row : summary) {
+            out.println("<tr><td>" + row[0] + "</td><td>" + row[1] + "</td><td>" + row[2] + "</td><td>" + row[3] + "</td></tr>");
+        }
+
+    }
+}

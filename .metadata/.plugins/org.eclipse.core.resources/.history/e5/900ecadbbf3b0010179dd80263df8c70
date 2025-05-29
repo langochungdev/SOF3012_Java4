@@ -1,0 +1,8 @@
+package Entity;
+
+import jakarta.persistence.OneToMany;
+
+public class User {
+@OneToMany(mappedBy = "video")
+private List<Favorite> favorites;
+}

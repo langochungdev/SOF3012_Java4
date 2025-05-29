@@ -1,0 +1,13 @@
+package DAO;
+
+import java.util.List;
+
+import Entity.User;
+
+public interface UserDAO {
+    List<User> findAll();
+    User findById(Long id);
+    void create(User user);
+    void update(User user);
+    void deleteById(Long id);
+}

@@ -1,0 +1,22 @@
+package Controller;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.*;
+import java.io.IOException;
+import java.util.List;
+
+import DAO.UserDAO;
+import DAO.UserDAOImpl;
+import Entity.User;
+
+@WebServlet("/video/favorites")
+public class b4 extends HttpServlet {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        UserDAO dao = new UserDAOImpl();
+        List<User> user = dao.findAll();
+        
+        req.setAttribute("user", user);
+        req.getRequestDispatcher("/pages/b3.jsp").forward(req, resp);
+    }
+}
+
