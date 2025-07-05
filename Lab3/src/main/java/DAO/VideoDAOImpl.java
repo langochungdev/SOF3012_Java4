@@ -5,7 +5,7 @@ import Entity.Video;
 import Utils.XJPA;
 import jakarta.persistence.EntityManager;
 
-public class VideoDAOImpl implements VideoDAO {
+public class VideoDAOImpl implements  BaseDAO<Entity.Video, String> {
     EntityManager em = XJPA.getEntityManager();
 
     public List<Video> findAll() {

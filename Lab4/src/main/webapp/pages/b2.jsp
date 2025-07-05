@@ -8,6 +8,9 @@
 <title>Đăng nhập</title>
 <link rel="stylesheet" href="css/style.css">
 <style>
+*{
+box-sizing: border-box;
+}
 body {
 	font-family: Arial, sans-serif;
 	display: flex;
@@ -36,7 +39,7 @@ input[type="text"], input[type="password"] {
 
 input[type="submit"] {
 	width: 100%;
-	padding: 10px;
+	padding: 8px;
 	background-color: #4CAF50;
 	color: white;
 	border: none;
@@ -51,10 +54,9 @@ input[type="submit"] {
 			<p class="error">${error}</p>
 		</c:if>
 		<form action="login" method="post">
-			<label>Username hoặc Email:</label> <input type="text"
-				name="idOrEmail" required> <label>Mật khẩu:</label> <input
-				type="password" name="password" required> <input
-				type="submit" value="Đăng nhập">
+			<input type="text" name="idOrEmail" placeholder="id hoặc mail" required> 
+			<input type="password" name="password" placeholder="password"required> 
+			<input type="submit" value="Đăng nhập">
 		</form>
 	</div>
 </body>

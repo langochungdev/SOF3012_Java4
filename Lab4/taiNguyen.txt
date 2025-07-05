@@ -1,0 +1,9 @@
+GET → http://localhost:8080/lab7/employees → Lấy tất cả nhân viên
+
+GET → http://localhost:8080/lab7/employees/NV03 → Lấy 1 nhân viên
+
+POST → http://localhost:8080/lab7/employees → Thêm nhân viên (JSON)
+
+PUT → http://localhost:8080/lab7/employees/NV06 → Cập nhật nhân viên (JSON)
+
+DELETE → http://localhost:8080/lab7/employees/NV06 → Xoá nhân viên

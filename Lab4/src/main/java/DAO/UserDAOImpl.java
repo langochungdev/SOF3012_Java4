@@ -1,11 +1,10 @@
 package DAO;
-
 import java.util.List;
 import Entity.User;
 import Utils.XJPA;
 import jakarta.persistence.EntityManager;
 
-public class UserDAOImpl implements UserDAO {
+public class UserDAOImpl implements BaseDAO<User, Long> {
 	EntityManager em = XJPA.getEntityManager();
 
 	public List<User> findAll() {
@@ -37,14 +36,11 @@ public class UserDAOImpl implements UserDAO {
 		em.getTransaction().commit();
 	}
 	
+//	bai1
 	public User findByIdOrEmail(String idOrEmail) {
         try {
             Long id = null;
-            try {
-                id = Long.parseLong(idOrEmail); 
-            } catch (NumberFormatException e) {
-               
-            }
+            id = Long.parseLong(idOrEmail); 
             return em.createQuery("SELECT u FROM User u WHERE u.id = :id OR u.email = :email", User.class)
                      .setParameter("id", id)
                      .setParameter("email", idOrEmail)

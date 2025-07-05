@@ -1,11 +1,10 @@
 package DAO;
-
 import java.util.List;
 import Entity.Video;
 import Utils.XJPA;
 import jakarta.persistence.EntityManager;
 
-public class VideoDAOImpl implements VideoDAO {
+public class VideoDAOImpl implements BaseDAO<Video, String> {
     EntityManager em = XJPA.getEntityManager();
 
     public List<Video> findAll() {
@@ -35,6 +34,7 @@ public class VideoDAOImpl implements VideoDAO {
         em.getTransaction().commit();
     }
     
+//    bai1
  	public List<Video> findByKeyword(String keyword) {
  		return em.createQuery("SELECT v FROM Video v WHERE v.title LIKE :keyword", Video.class)
  				.setParameter("keyword", "%" + keyword + "%").getResultList();
@@ -61,7 +61,7 @@ public class VideoDAOImpl implements VideoDAO {
 
  	public List<Object[]> getVideoShareSummary() {
  		return em.createQuery(
- 				"SELECT v.title, COUNT(f) as shareCount, MIN(f.likeDate) as firstShare, MAX(f.likeDate) as lastShare FROM Video v LEFT JOIN v.favorites f GROUP BY v.title",
+ 				"SELECT v.title, COUNT(s), MIN(s.shareDate), MAX(s.shareDate) FROM Video v LEFT JOIN v.shares s GROUP BY v.title",
  				Object[].class).getResultList();
  	}
 }

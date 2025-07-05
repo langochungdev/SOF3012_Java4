@@ -5,7 +5,7 @@ import Entity.User;
 import Utils.XJPA;
 import jakarta.persistence.EntityManager;
 
-public class UserDAOImpl implements UserDAO {
+public class UserDAOImpl implements  BaseDAO<Entity.User, Long> {
     EntityManager em = XJPA.getEntityManager();
 
     public List<User> findAll() {

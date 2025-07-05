@@ -1,7 +1,7 @@
-CREATE DATABASE j4lab3;
+CREATE DATABASE j4lab3
 GO
 
-USE j4lab3;
+USE j4lab3
 GO
 
 CREATE TABLE [User] (
@@ -10,7 +10,7 @@ CREATE TABLE [User] (
     Email NVARCHAR(255),
     Fullname NVARCHAR(255),
     Admin BIT
-);
+)
 
 CREATE TABLE Video (
     Id NVARCHAR(50) PRIMARY KEY,
@@ -19,7 +19,7 @@ CREATE TABLE Video (
     Views INT,
     Description NVARCHAR(MAX),
     Active BIT
-);
+)
 
 CREATE TABLE Favorite (
     Id BIGINT PRIMARY KEY,
@@ -28,7 +28,7 @@ CREATE TABLE Favorite (
     LikeDate DATE,
     FOREIGN KEY (UserId) REFERENCES [User](Id),
     FOREIGN KEY (VideoId) REFERENCES Video(Id)
-);
+)
 
 CREATE TABLE Share (
     Id BIGINT PRIMARY KEY,
@@ -38,10 +38,10 @@ CREATE TABLE Share (
     ShareDate DATE,
     FOREIGN KEY (UserId) REFERENCES [User](Id),
     FOREIGN KEY (VideoId) REFERENCES Video(Id)
-);
+)
 
 
--- Insert into [User]
+
 INSERT INTO [User] (Id, Password, Email, Fullname, Admin) VALUES
 (1, 'pass123', 'user1@example.com', 'Nguyen Van A', 0),
 (2, 'pass456', 'user2@example.com', 'Tran Thi B', 0),
@@ -52,9 +52,9 @@ INSERT INTO [User] (Id, Password, Email, Fullname, Admin) VALUES
 (7, 'pass404', 'user7@example.com', 'Vu Van G', 0),
 (8, 'pass505', 'user8@example.com', 'Ngo Thi H', 0),
 (9, 'pass606', 'user9@example.com', 'Dang Van I', 0),
-(10, 'pass707', 'user10@example.com', 'Trinh Thi K', 1);
+(10, 'pass707', 'user10@example.com', 'Trinh Thi K', 1)
 
--- Insert into Video
+
 INSERT INTO Video (Id, Title, Poster, Views, Description, Active) VALUES
 ('V001', 'Video 1', 'poster1.jpg', 100, 'Description 1', 1),
 ('V002', 'Video 2', 'poster2.jpg', 150, 'Description 2', 1),
@@ -65,9 +65,9 @@ INSERT INTO Video (Id, Title, Poster, Views, Description, Active) VALUES
 ('V007', 'Video 7', 'poster7.jpg', 400, 'Description 7', 1),
 ('V008', 'Video 8', 'poster8.jpg', 450, 'Description 8', 1),
 ('V009', 'Video 9', 'poster9.jpg', 500, 'Description 9', 0),
-('V010', 'Video 10', 'poster10.jpg', 550, 'Description 10', 1);
+('V010', 'Video 10', 'poster10.jpg', 550, 'Description 10', 1)
 
--- Insert into Favorite
+
 INSERT INTO Favorite (Id, UserId, VideoId, LikeDate) VALUES
 (1, 1, 'V001', '2025-05-01'),
 (2, 2, 'V002', '2025-05-02'),
@@ -78,9 +78,9 @@ INSERT INTO Favorite (Id, UserId, VideoId, LikeDate) VALUES
 (7, 7, 'V007', '2025-05-07'),
 (8, 8, 'V008', '2025-05-08'),
 (9, 9, 'V009', '2025-05-09'),
-(10, 10, 'V010', '2025-05-10');
+(10, 10, 'V010', '2025-05-10')
 
--- Insert into Share
+
 INSERT INTO Share (Id, UserId, VideoId, Emails, ShareDate) VALUES
 (1, 1, 'V001', 'friend1@example.com', '2025-05-01'),
 (2, 2, 'V002', 'friend2@example.com', '2025-05-02'),
@@ -91,4 +91,21 @@ INSERT INTO Share (Id, UserId, VideoId, Emails, ShareDate) VALUES
 (7, 7, 'V007', 'friend7@example.com', '2025-05-07'),
 (8, 8, 'V008', 'friend8@example.com', '2025-05-08'),
 (9, 9, 'V009', 'friend9@example.com', '2025-05-09'),
-(10, 10, 'V010', 'friend10@example.com', '2025-05-10');
+(10, 10, 'V010', 'friend10@example.com', '2025-05-10')
+
+-- lab5 
+CREATE TABLE Visitors (
+    id INT PRIMARY KEY,
+    count INT
+)
+
+INSERT INTO Visitors (id, count) VALUES (1, 0)
+
+
+-- lab5 b3 
+CREATE TABLE Logs (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    Url NVARCHAR(500),
+    AccessTime DATETIME,
+    Username NVARCHAR(100) NULL
+)

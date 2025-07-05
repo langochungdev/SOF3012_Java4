@@ -1,38 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
-<%@ page contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Danh sách video yêu thích</title>
-    <style>
-        body {
-            font-family: Arial;
-            margin: 20px;
-            background-color: #f9f9f9;
-        }
-        h2 {
-            color: #333;
-        }
-        .video {
-            border: 1px solid #ccc;
-            padding: 12px;
-            margin-bottom: 10px;
-            background-color: white;
-            border-radius: 6px;
-        }
-    </style>
+    <title>favorites</title>
 </head>
 <body>
-    <h2>Video yêu thích của: ${user.fullname}</h2>
-
+    <h2>${user.fullname}</h2>
     <c:forEach var="f" items="${user.favorites}">
         <div class="video">
             <strong>Tiêu đề:</strong> ${f.video.title} <br>
             <strong>Lượt xem:</strong> ${f.video.views} <br>
             <strong>Mô tả:</strong> ${f.video.description}
         </div>
+        <hr>
     </c:forEach>
 </body>
 </html>

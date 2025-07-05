@@ -82,11 +82,11 @@ th {
 				<th>Số lượt thích</th>
 				<th>Còn hiệu lực</th>
 			</tr>
-			<c:forEach var="video" items="${videos}">
+			<c:forEach var="v" items="${videos}">
 				<tr>
-					<td>${video.title}</td>
-					<td>${video.favorites != null ? video.favorites.size() : 0}</td>
-					<td>${video.active ? 'Có' : 'Không'}</td>
+					<td>${v.title}</td>
+					<td>${v.favorites != null ? v.favorites.size() : 0}</td>
+					<td>${v.active ? 'Có' : 'Không'}</td>
 				</tr>
 			</c:forEach>
 		</table>

@@ -1,9 +1,0 @@
-package Entity;
-
-import java.util.List;
-import jakarta.persistence.OneToMany;
-
-public class Video {
-	@OneToMany(mappedBy = "user")
-	private List<Favorite> favorites;
-}

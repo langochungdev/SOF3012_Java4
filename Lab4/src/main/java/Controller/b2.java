@@ -26,9 +26,9 @@ public class b2 extends HttpServlet {
         if (user != null && user.getPassword().equals(password)) {
             session.setAttribute("user", user);
             req.setAttribute("error", "thanh cong");
-            
         } else {
             req.setAttribute("error", "Sai username/email hoặc mật khẩu");
-        }req.getRequestDispatcher("/pages/b2.jsp").forward(req, resp);
+        }
+        req.getRequestDispatcher("/pages/b2.jsp").forward(req, resp);
     }
 }

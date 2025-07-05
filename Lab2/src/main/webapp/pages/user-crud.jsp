@@ -8,15 +8,16 @@
 </head>
 <body>
 	<i>${message}</i>
-	<c:url var="url" value="/user/crud" />
+	<c:url var="url" value="/user/crud"/>
 		<form method="post">
-			<input name="id" value="${user.id}"><br> <input
-				name="password" type="password" value="${user.password}"><br>
-			<input name="fullname" value="${user.fullname}"><br> <input
-				name="email" value="${user.email}"><br> <input
-				name=admin type="radio" value="true" ${user.admin?'checked':''}>
-			Male <input name="admin" type="radio" value="false"
-				${user.admin?'':'checked'}> Female
+			<input name="id" value="${user.id}" placeholder="id"><br> 
+			<input name="password" type="text" value="${user.password}" placeholder="password"><br>
+			<input name="fullname" value="${user.fullname}" placeholder="name"><br> 
+			<input name="email" value="${user.email}" placeholder=mail><br> 
+			Admin
+			<input name=admin type="radio" value="true" ${user.admin?'checked':''}>
+			User
+			<input name="admin" type="radio" value="false" ${user.admin?'':'checked'}> 
 			<hr>
 			<button formaction="${url}/create">Create</button>
 			<button formaction="${url}/update">Update</button>
@@ -24,7 +25,7 @@
 			<button formaction="${url}/reset">Reset</button>
 	</form>
 	<hr>
-	<table border="1">
+	<table border="1" style="width: 100%">
 		<thead>
 			<tr>
 				<th>Id</th>
@@ -32,7 +33,7 @@
 				<th>Fullname</th>
 				<th>Email</th>
 				<th>Role</th>
-				<th></th>
+				<th>Edit</th>
 			</tr>
 		</thead>
 		<tbody>

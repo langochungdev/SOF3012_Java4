@@ -1,6 +1,5 @@
 package Controller;
 
-import java.io.PrintStream;
 import java.util.List;
 import DAO.UserDAOImpl;
 import DAO.VideoDAOImpl;
@@ -8,34 +7,36 @@ import Entity.User;
 import Entity.Video;
 
 public class b1 {
+	static void p(String s) {
+		System.out.println(s);
+	}
 	public static void main(String[] args) {
 		UserDAOImpl userDAO = new UserDAOImpl();
 		VideoDAOImpl videoDAO = new VideoDAOImpl();
-		PrintStream out = System.out;
 
 		String idOrEmail = "user1@example.com";
 		User user = userDAO.findByIdOrEmail(idOrEmail);
-		out.println("User tim theo id hoac mail: " + user.getFullname());
+		p("User tim theo id hoac mail: " + user.getFullname());
 
 		String keyword = "1";
 		List<Video> videos = videoDAO.findByKeyword(keyword);
 		for (Video v : videos) {
-			out.println("Tìm video theo từ khóa" + v.getTitle());
+			p("Tìm video theo từ khóa" + v.getTitle());
 		}
 
 		List<Video> topVideos = videoDAO.findTop10MostFavorited();
 		for (Video v : topVideos) {
-			out.println("video được yêu thích nhất: " + v.getTitle());
+			p("video được yêu thích nhất: " + v.getTitle());
 		}
 
 		List<Video> notFavorited = videoDAO.findNotFavorited();
 		for (Video v : notFavorited) {
-			out.println("video ko ai thích: " + v.getTitle());
+			p("video ko ai thích: " + v.getTitle());
 		}
 
 		List<Video> shared2024 = videoDAO.findSharedIn2024();
 		for (Video v : shared2024) {
-			out.println("Video được chia sẻ trong năm 2024" + v.getTitle());
+			p("Video được chia sẻ trong năm 2024" + v.getTitle());
 		}
 	}
 }

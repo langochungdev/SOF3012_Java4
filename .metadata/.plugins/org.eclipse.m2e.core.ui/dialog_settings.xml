@@ -2,14 +2,36 @@
 <section name="Workbench">
 	<section name="wizardPage">
 		<list key="groupId">
+			<item value="asmvue"/>
+			<item value="lab8"/>
+			<item value="lab7"/>
+			<item value="demo"/>
+			<item value="Lab7"/>
+			<item value="Lab6"/>
+			<item value="t"/>
+			<item value="Lab1"/>
+			<item value="Lab5"/>
 			<item value="Lab4"/>
 			<item value="Lab3"/>
 		</list>
 		<list key="name">
+			<item value="Lab6"/>
+			<item value="t"/>
+			<item value="Lab1"/>
+			<item value="Lab5"/>
 			<item value="Lab4"/>
 			<item value="Lab3"/>
 		</list>
 		<list key="artifactId">
+			<item value="asmvue"/>
+			<item value="lab8"/>
+			<item value="lab7"/>
+			<item value="demo"/>
+			<item value="Lab7"/>
+			<item value="Lab6"/>
+			<item value="t"/>
+			<item value="Lab1"/>
+			<item value="Lab5"/>
 			<item value="Lab4"/>
 			<item value="Lab3"/>
 		</list>

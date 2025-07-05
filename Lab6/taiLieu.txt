@@ -1,0 +1,14 @@
+- Trang	không được bảo vệ:		
+/account/sign-in
+	
+- Trang	yêu cầu	đăng nhập:		
+/account/change-password	
+/account/edit-profile	
+/video/like/*	
+/video/share/*
+	
+- Trang	yêu cầu	đăng nhập với vai trò admin	
+/admin/video	
+/admin/user	
+/admin/like	
+/admin/share

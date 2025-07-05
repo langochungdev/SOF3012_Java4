@@ -4,15 +4,14 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 import java.io.IOException;
 import java.util.List;
-
-import DAO.UserDAO;
+import DAO.BaseDAO;
 import DAO.UserDAOImpl;
 import Entity.User;
 
 @WebServlet("/video/favorites")
 public class b4 extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        UserDAO dao = new UserDAOImpl();
+        BaseDAO<User, Long> dao = new UserDAOImpl();
         List<User> users = dao.findAll();
         
         req.setAttribute("users", users);

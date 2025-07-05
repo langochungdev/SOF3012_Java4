@@ -7,12 +7,8 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 
 public class UserDAOImpl implements UserDAO {
-	private EntityManager em;
+	private EntityManager em= XJPA.getEntityManager();
 	
-	public UserDAOImpl() {
-		em = XJPA.getEntityManager();
-    }
-
 	@Override
 	public List<User> findAll() {
 		String jpql = "SELECT o FROM User o";

@@ -1,11 +1,10 @@
 package DAO;
-
 import java.util.List;
 import Entity.Favorite;
 import Utils.XJPA;
 import jakarta.persistence.EntityManager;
 
-public class FavoriteDAOImpl implements FavoriteDAO {
+public class FavoriteDAOImpl implements BaseDAO<Favorite, Long> {
     EntityManager em = XJPA.getEntityManager();
 
     public List<Favorite> findAll() {

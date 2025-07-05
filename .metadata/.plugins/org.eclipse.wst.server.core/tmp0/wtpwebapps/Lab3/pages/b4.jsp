@@ -8,8 +8,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-
 	<table border="1">
 		<tr>
 			<th>Video title</th>
