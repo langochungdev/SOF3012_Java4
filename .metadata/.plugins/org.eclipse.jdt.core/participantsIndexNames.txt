@@ -1,4 +1,6 @@
 INDEX VERSION 1.134
+C:\Java4_space\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2589038174.index
+\asm\src\main\java
 C:\Java4_space\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3871585139.index
 \Lab4\src\main\java
 C:\Java4_space\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\185188617.index
@@ -15,5 +17,11 @@ C:\Java4_space\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3407805070.
 \asmvue\src\main\java
 C:\Java4_space\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\190144666.index
 \Lab6\src\main\java
+C:\Java4_space\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1859007815.index
+\asm\src\main\java
 C:\Java4_space\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2418444878.index
 \Lab7\src\main\java
+C:\Java4_space\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2646218483.index
+\asm\src\main\java
+C:\Java4_space\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1867873682.index
+\asm\src\main\java

@@ -9,5 +9,6 @@
   <module moduleId="org.eclipse.jst.jee.server:Lab2" serverId="Tomcat v10.1 Server at localhost"/>
   <module moduleId="org.eclipse.jst.jee.server:Lab3" serverId="Tomcat v10.1 Server at localhost"/>
   <module moduleId="org.eclipse.jst.jee.server:demo" serverId="Tomcat v10.1 Server at localhost"/>
+  <module moduleId="org.eclipse.jst.jee.server:asm" serverId="Tomcat v10.1 Server at localhost"/>
   <module moduleId="org.eclipse.jst.jee.server:asmvue" serverId="Tomcat v10.1 Server at localhost"/>
 </modules>
