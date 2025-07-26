@@ -8,7 +8,7 @@ import java.io.IOException;
 
 @WebServlet
 ({"/account/sign-up", 
-"/account/change-password", 
+"/account/change-password",
 "/account/edit-profile"})
 public class Account extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)

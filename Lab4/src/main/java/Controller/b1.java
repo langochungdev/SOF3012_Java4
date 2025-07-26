@@ -14,7 +14,7 @@ public class b1 {
 		UserDAOImpl userDAO = new UserDAOImpl();
 		VideoDAOImpl videoDAO = new VideoDAOImpl();
 
-		String idOrEmail = "user1@example.com";
+		String idOrEmail = "1";
 		User user = userDAO.findByIdOrEmail(idOrEmail);
 		p("User tim theo id hoac mail: " + user.getFullname());
 

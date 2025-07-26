@@ -49,7 +49,6 @@ public class ShareServlet extends HttpServlet {
             if (user != null && videoId != null && email != null) {
                 Video video = videoDAO.findById(videoId);
                 if (video != null) {
-                    // lưu vào CSDL
                     Share s = new Share();
                     s.setUser(user);
                     s.setVideo(video);
@@ -57,7 +56,6 @@ public class ShareServlet extends HttpServlet {
                     s.setShareDate(LocalDate.now());
                     shareDAO.create(s);
 
-                    // gửi mail
                     String subject = "🎬 " + user.getFullname() + " đã chia sẻ 1 video với bạn!";
                     String imgUrl = req.getContextPath() + "/assets/img/" + video.getPoster();
                     String body = ""

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Test API CRUD</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="container py-4">
+<h2 class="mb-4">Test API CRUD (console log)</h2>
+<div class="mb-3">
+    <button class="btn btn-primary" onclick="getAllNguoiDung()">GET all NguoiDung</button>
+    <button class="btn btn-primary" onclick="getNguoiDungById()">GET NguoiDung by ID</button>
+    <button class="btn btn-success" onclick="createNguoiDung()">POST NguoiDung</button>
+    <button class="btn btn-warning" onclick="updateNguoiDung()">PUT NguoiDung</button>
+    <button class="btn btn-danger" onclick="deleteNguoiDung()">DELETE NguoiDung</button>
+</div>
+<div class="mb-3">
+    <button class="btn btn-primary" onclick="getAllBaiViet()">GET all BaiViet</button>
+    <button class="btn btn-success" onclick="createBaiViet()">POST BaiViet</button>
+    <button class="btn btn-danger" onclick="deleteBaiViet()">DELETE BaiViet</button>
+</div>
+<div class="mb-3">
+    <button class="btn btn-primary" onclick="getAllBinhLuan()">GET all BinhLuan</button>
+    <button class="btn btn-success" onclick="createBinhLuan()">POST BinhLuan</button>
+    <button class="btn btn-danger" onclick="deleteBinhLuan()">DELETE BinhLuan</button>
+</div>
+<div class="alert alert-info mt-4">
+    Xem kết quả thành công/thất bại bên console!
+</div>
+<script>
+    // NguoiDung
+    function getAllNguoiDung() {
+        fetch('/api/nguoidung')
+            .then(r => r.json())
+            .then(d => console.log('GET all NguoiDung:', d))
+            .catch(e => console.error('Fail GET all NguoiDung:', e));
+    }
+    function getNguoiDungById() {
+        const id = prompt("Nhập MaNguoiDung cần GET:");
+        fetch('/api/nguoidung/' + id)
+            .then(r => {
+                if (!r.ok) throw r.status;
+                return r.json();
+            })
+            .then(d => console.log('GET NguoiDung by ID:', d))
+            .catch(e => console.error('Fail GET NguoiDung by ID:', e));
+    }
+    function createNguoiDung() {
+        const body = {
+            maNguoiDung: prompt("Mã Người Dùng:"),
+            ten: "Test User",
+            email: "test" + Math.random().toString(36).slice(2) + "@mail.com",
+            matKhau: "123456",
+            gioiTinh: true,
+            anhDaiDien: ""
+        };
+        fetch('/api/nguoidung', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(body)
+        })
+            .then(r => {
+                if (!r.ok) throw r.status;
+                return r.json();
+            })
+            .then(d => console.log('POST NguoiDung:', d))
+            .catch(e => console.error('Fail POST NguoiDung:', e));
+    }
+    function updateNguoiDung() {
+        const id = prompt("Nhập MaNguoiDung cần UPDATE:");
+        const body = {
+            maNguoiDung: id,
+            ten: "User Updated",
+            email: "updated" + Math.random().toString(36).slice(2) + "@mail.com",
+            matKhau: "654321",
+            gioiTinh: false,
+            anhDaiDien: ""
+        };
+        fetch('/api/nguoidung/' + id, {
+            method: 'PUT',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(body)
+        })
+            .then(r => {
+                if (!r.ok) throw r.status;
+                return r.json();
+            })
+            .then(d => console.log('PUT NguoiDung:', d))
+            .catch(e => console.error('Fail PUT NguoiDung:', e));
+    }
+    function deleteNguoiDung() {
+        const id = prompt("Nhập MaNguoiDung cần DELETE:");
+        fetch('/api/nguoidung/' + id, { method: 'DELETE' })
+            .then(r => {
+                if (!r.ok) throw r.status;
+                console.log('DELETE NguoiDung thành công:', id);
+            })
+            .catch(e => console.error('Fail DELETE NguoiDung:', e));
+    }
+    // BaiViet
+    function getAllBaiViet() {
+        fetch('/api/baiviet')
+            .then(r => r.json())
+            .then(d => console.log('GET all BaiViet:', d))
+            .catch(e => console.error('Fail GET all BaiViet:', e));
+    }
+    function createBaiViet() {
+        const body = {
+            maBaiViet: prompt("Mã Bài Viết:"),
+            nguoiDung: { maNguoiDung: prompt("Nhập MaNguoiDung:") },
+            tieuDe: "Tiêu đề test " + Math.random().toString(36).slice(2),
+            noiDung: "Nội dung test",
+            hinhAnh: "",
+            ngayTao: new Date().toISOString()
+        };
+        fetch('/api/baiviet', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(body)
+        })
+            .then(r => {
+                if (!r.ok) throw r.status;
+                return r.json();
+            })
+            .then(d => console.log('POST BaiViet:', d))
+            .catch(e => console.error('Fail POST BaiViet:', e));
+    }
+    function deleteBaiViet() {
+        const id = prompt("Nhập MaBaiViet cần DELETE:");
+        fetch('/api/baiviet/' + id, { method: 'DELETE' })
+            .then(r => {
+                if (!r.ok) throw r.status;
+                console.log('DELETE BaiViet thành công:', id);
+            })
+            .catch(e => console.error('Fail DELETE BaiViet:', e));
+    }
+    // BinhLuan
+    function getAllBinhLuan() {
+        fetch('/api/binhluan')
+            .then(r => r.json())
+            .then(d => console.log('GET all BinhLuan:', d))
+            .catch(e => console.error('Fail GET all BinhLuan:', e));
+    }
+    function createBinhLuan() {
+        const body = {
+            maBinhLuan: prompt("Mã Bình Luận:"),
+            baiViet: { maBaiViet: prompt("Nhập MaBaiViet:") },
+            maNguoiDung: prompt("Nhập MaNguoiDung:"),
+            noiDung: "Bình luận test",
+            ngayTao: new Date().toISOString()
+        };
+        fetch('/api/binhluan', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(body)
+        })
+            .then(r => {
+                if (!r.ok) throw r.status;
+                return r.json();
+            })
+            .then(d => console.log('POST BinhLuan:', d))
+            .catch(e => console.error('Fail POST BinhLuan:', e));
+    }
+    function deleteBinhLuan() {
+        const id = prompt("Nhập MaBinhLuan cần DELETE:");
+        fetch('/api/binhluan/' + id, { method: 'DELETE' })
+            .then(r => {
+                if (!r.ok) throw r.status;
+                console.log('DELETE BinhLuan thành công:', id);
+            })
+            .catch(e => console.error('Fail DELETE BinhLuan:', e));
+    }
+</script>
+</body>
+</html>

@@ -24,7 +24,7 @@ public class b2 implements ServletContextListener, HttpSessionListener {
         } finally {
             em.close();
         }
-// ko phải lớp servlet nên phải lấy servlet context từ sce 
+
         sce.getServletContext().setAttribute("visitors", visitors);
     }
     

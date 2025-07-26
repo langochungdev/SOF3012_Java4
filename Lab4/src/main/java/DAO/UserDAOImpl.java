@@ -3,6 +3,7 @@ import java.util.List;
 import Entity.User;
 import Utils.XJPA;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.NoResultException;
 
 public class UserDAOImpl implements BaseDAO<User, Long> {
 	EntityManager em = XJPA.getEntityManager();
@@ -38,15 +39,23 @@ public class UserDAOImpl implements BaseDAO<User, Long> {
 	
 //	bai1
 	public User findByIdOrEmail(String idOrEmail) {
-        try {
-            Long id = null;
-            id = Long.parseLong(idOrEmail); 
-            return em.createQuery("SELECT u FROM User u WHERE u.id = :id OR u.email = :email", User.class)
-                     .setParameter("id", id)
-                     .setParameter("email", idOrEmail)
-                     .getSingleResult();
-        } catch (Exception e) {
-            return null;
-        }
-    }
+	    try {
+	        try {
+	            Long id = Long.parseLong(idOrEmail);
+	            return em.createQuery("SELECT u FROM User u WHERE u.id = :id", User.class)
+	                     .setParameter("id", id)
+	                     .getSingleResult();
+	        } catch (NumberFormatException e) {
+	            return em.createQuery("SELECT u FROM User u WHERE u.email = :email", User.class)
+	                     .setParameter("email", idOrEmail)
+	                     .getSingleResult();
+	        }
+	    } catch (NoResultException ex) {
+	        return null;
+	    } catch (Exception ex) {
+	        ex.printStackTrace();
+	        return null;
+	    }
+	}
+
 }

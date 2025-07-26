@@ -35,9 +35,8 @@ public class HomeServlet extends HttpServlet {
 
             String uri = req.getRequestURI();
 
-         // nếu là admin
             if (uri.contains("/admin/")) {
-                req.setAttribute("view", "homelist"); // đổi tên biến từ page → view
+                req.setAttribute("view", "homelist"); 
                 req.getRequestDispatcher("/admin.jsp").forward(req, resp);
             }
  else {
