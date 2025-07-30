@@ -2,18 +2,14 @@ package servlet;
 
 import dao.VideoDAO;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 import model.Video;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.List;
-import java.util.UUID;
 
 @WebServlet("/admin/videos")
-@MultipartConfig
 public class AdminVideoServlet extends HttpServlet {
     private VideoDAO videoDAO = new VideoDAO();
 
@@ -25,7 +21,7 @@ public class AdminVideoServlet extends HttpServlet {
             req.setAttribute("form", video);
         }
 
-        List<Video> list = videoDAO.findAll();
+        List<Video> list = videoDAO.findAllEdit();
         req.setAttribute("videos", list);
         req.setAttribute("view", "admin/videos");
         req.getRequestDispatcher("/admin.jsp").forward(req, resp);
@@ -33,32 +29,20 @@ public class AdminVideoServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-    	req.setCharacterEncoding("UTF-8");
+        req.setCharacterEncoding("UTF-8");
 
-    	String action = req.getParameter("action");
+        String action = req.getParameter("action");
         String id = req.getParameter("id");
         String title = req.getParameter("title");
         String description = req.getParameter("description");
+        String poster = req.getParameter("poster"); // lấy từ input text poster
         String viewsStr = req.getParameter("views");
         int views = (viewsStr != null && !viewsStr.isEmpty()) ? Integer.parseInt(viewsStr) : 0;
-
         boolean active = "true".equals(req.getParameter("active"));
-
-        String posterName = null;
-        Part filePart = req.getPart("posterFile");
-        if (filePart != null && filePart.getSize() > 0) {
-            String realPath = req.getServletContext().getRealPath("/assets/img");
-            File dir = new File(realPath);
-            if (!dir.exists()) dir.mkdirs();
-
-            String filename = UUID.randomUUID().toString() + "_" + filePart.getSubmittedFileName();
-            filePart.write(realPath + "/" + filename);
-            posterName = filename;
-        }
 
         try {
             if ("create".equals(action)) {
-                Video v = new Video(id, title, posterName != null ? posterName : "poster.jpg", views, description, active);
+                Video v = new Video(id, title, poster != null && !poster.isEmpty() ? poster : "poster.jpg", views, description, active);
                 videoDAO.create(v);
             } else if ("update".equals(action)) {
                 Video v = videoDAO.findById(id);
@@ -67,8 +51,8 @@ public class AdminVideoServlet extends HttpServlet {
                     v.setDescription(description);
                     v.setViews(views);
                     v.setActive(active);
-                    if (posterName != null) {
-                        v.setPoster(posterName);
+                    if (poster != null && !poster.isEmpty()) {
+                        v.setPoster(poster);
                     }
                     videoDAO.update(v);
                 }

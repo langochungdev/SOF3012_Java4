@@ -38,7 +38,6 @@ public class ShareServlet extends HttpServlet {
         }
     }
 
-
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
@@ -57,7 +56,8 @@ public class ShareServlet extends HttpServlet {
                     shareDAO.create(s);
 
                     String subject = "🎬 " + user.getFullname() + " đã chia sẻ 1 video với bạn!";
-                    String imgUrl = req.getContextPath() + "/assets/img/" + video.getPoster();
+                    // Ghép tiền tố & hậu tố để tạo link ảnh
+                    String imgUrl = "https://i.ytimg.com/vi/" + video.getPoster() + "/hq720.jpg";
                     String body = ""
                             + "<h3>Chào bạn,</h3>"
                             + "<p><strong>" + user.getFullname() + "</strong> vừa chia sẻ một video với bạn trên OE Video!</p>"

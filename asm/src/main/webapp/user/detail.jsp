@@ -106,11 +106,16 @@
 </head>
 <body>
 <div class="container">
-    <!-- Video chính -->
     <div class="main-video">
-        <div class="video-frame">
-            <img src="http://localhost:8080/asm/assets/img/${video.poster}" alt="poster">
-        </div>
+<div class="video-frame">
+    <iframe width="100%" height="100%"
+        src="https://www.youtube.com/embed/jumecLUY-z0?si=${video.poster}"
+        title="YouTube video player" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen>
+    </iframe>
+</div>
+
         <div class="title">${video.title}</div>
         <div class="description">${video.description}</div>
         <div class="actions">
@@ -126,8 +131,9 @@
                 <c:forEach var="v" items="${historyList}">
                     <a href="detail?id=${v.id}" class="suggestion-item">
                         <div class="suggestion-poster">
-                            <img src="http://localhost:8080/asm/assets/img/${v.poster}" alt="${v.title}">
+                            <img src="https://i.ytimg.com/vi/${v.poster}/hq720.jpg" alt="${v.title}" />
                         </div>
+                        
                         <div class="suggestion-title">${v.title}</div>
                     </a>
                 </c:forEach>

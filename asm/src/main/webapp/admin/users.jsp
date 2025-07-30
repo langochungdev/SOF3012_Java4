@@ -44,7 +44,6 @@
 </head>
 <body>
 
-<!-- User Edition -->
 <div class="tab-box">
     <div class="tab active">User Edition</div>
 </div>

@@ -103,7 +103,8 @@
         <div class="video-card">
             <a href="detail?id=${v.id}">
                 <div class="poster">
-                    <img src="http://localhost:8080/asm/assets/img/${v.poster}" alt="${v.title}" />
+<%--                     <img src="http://localhost:8080/asm/assets/img/${v.poster}" alt="${v.title}" /> --%>
+                    <img src="https://i.ytimg.com/vi/${v.poster}/hq720.jpg" alt="${v.title}" />
                 </div>
             </a>
             <div class="title">${v.title}</div>

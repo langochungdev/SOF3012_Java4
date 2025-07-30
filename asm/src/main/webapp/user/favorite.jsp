@@ -36,7 +36,7 @@
         <div class="video-card">
             <a href="detail?id=${f.video.id}">
                 <div class="poster">
-                    <img src="assets/img/${f.video.poster}" alt="${f.video.title}" />
+                    <img src="https://i.ytimg.com/vi/${f.video.poster}/hq720.jpg" alt="${f.video.title}" />
                 </div>
             </a>
             <div class="title">${f.video.title}</div>

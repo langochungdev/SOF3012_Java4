@@ -17,6 +17,16 @@ public class VideoDAO implements BaseDAO<Video, String> {
 	        em.close();
 	    }
 	}
+	
+	public List<Video> findAllEdit() {
+	    EntityManager em = XJPA.getEntityManager();
+	    try {
+	        return em.createQuery("SELECT v FROM Video v", Video.class).getResultList();
+	    } finally {
+	        em.close();
+	    }
+	}
+
 
     @Override
     public Video findById(String id) {

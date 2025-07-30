@@ -31,7 +31,7 @@
             align-items: center;
             font-weight: bold;
             margin-bottom: 10px;
-            cursor: pointer;
+            background: #f6f6f6;
         }
         .form-row { display: flex; gap: 20px; }
         .status-box {
@@ -85,34 +85,49 @@
         }
     </style>
     <script>
-        function previewImage(event) {
-            const reader = new FileReader();
-            reader.onload = function () {
-                document.getElementById('preview').src = reader.result;
+        // Hiện preview poster khi nhập id
+        function updatePosterPreview() {
+            var posterId = document.getElementById('posterId').value.trim();
+            var img = document.getElementById('preview');
+            if(posterId) {
+                img.src = 'https://i.ytimg.com/vi/' + posterId + '/hq720.jpg';
+                img.style.display = '';
+            } else {
+                img.src = '';
+                img.style.display = 'none';
             }
-            reader.readAsDataURL(event.target.files[0]);
         }
+        window.onload = function() {
+            updatePosterPreview();
+        };
     </script>
 </head>
 <body>
 
-<!-- Tabs -->
 <div class="tab-box">
     <div class="tab active">Video Edition</div>
 </div>
 
-<!-- Form -->
-<form class="tab-content" method="post" action="videos" enctype="multipart/form-data">
+<form class="tab-content" method="post" action="videos">
     <div class="form-row">
         <div>
-            <div class="poster" onclick="document.getElementById('posterFile').click()">
-                <img id="preview" src="http://localhost:8080/asm/assets/img/${form.poster}" style="height:100%" />
+            <div class="poster">
+                <c:if test="${form.poster != null && !form.poster.isEmpty()}">
+                    <img id="preview"
+                         src="https://i.ytimg.com/vi/${form.poster}/hq720.jpg"
+                         style="height:100%;max-width:100%;" />
+                </c:if>
+                <c:if test="${form.poster == null || form.poster.isEmpty()}">
+                    <img id="preview" style="display:none;height:100%;max-width:100%;" />
+                </c:if>
             </div>
-            <input type="file" name="posterFile" id="posterFile" accept="image/*" style="display: none;" onchange="previewImage(event)">
+            <label>Poster ID?</label>
+            <input type="text" name="poster" id="posterId" value="${form.poster}" placeholder="Nhập ID ảnh poster" oninput="updatePosterPreview()" />
+            <small>Chỉ nhập ID YouTube, không nhập link (VD: <b>knyYkqYgFv4</b>)</small>
         </div>
         <div style="flex: 1;">
             <label>YouTube ID?</label>
-            <input type="text" name="id" value="${form.id}" />
+            <input type="text" name="id" value="${form.id}" placeholder="Nhập ID YouTube" />
 
             <label>Video Title?</label>
             <input type="text" name="title" value="${form.title}" />
@@ -147,7 +162,7 @@
     <table>
     <thead>
         <tr>
-            <th>Poster</th> <!-- thêm -->
+            <th>Poster</th>
             <th>YouTube ID</th>
             <th>Video Title</th>
             <th>View Count</th>
@@ -159,7 +174,9 @@
         <c:forEach var="v" items="${videos}">
             <tr>
                 <td>
-                    <img src="http://localhost:8080/asm/assets/img/${v.poster}" style="height:60px;" />
+                    <c:if test="${v.poster != null && !v.poster.isEmpty()}">
+                        <img src="https://i.ytimg.com/vi/${v.poster}/hq720.jpg" style="height:60px;max-width:100px;" />
+                    </c:if>
                 </td>
                 <td>${v.id}</td>
                 <td>${v.title}</td>
@@ -176,9 +193,7 @@
             </tr>
         </c:forEach>
     </tbody>
-</table>
-
-
+    </table>
     <div style="margin-top: 5px;">${fn:length(videos)} videos</div>
 </div>
 
