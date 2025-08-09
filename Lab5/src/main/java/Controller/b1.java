@@ -28,7 +28,7 @@ public class b1 extends HttpServlet {
             resp.sendRedirect(req.getContextPath() + "/pages/home.jsp");
         }
     }
-    
+   
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         String action = req.getParameter("action");

@@ -50,6 +50,8 @@ public class b2 implements ServletContextListener, HttpSessionListener {
         } finally {
             em.close();
         }
+        
+        
     }
 
     @Override
